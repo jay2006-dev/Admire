@@ -46,6 +46,7 @@ const contactInfo = [
 ───────────────────────────────────────────────────────── */
 export default function ContactSection() {
   const [formHovered, setFormHovered] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const imageUrl =
     "https://i.guim.co.uk/img/media/b701b40253e58cfcd5da79b2dfb4357c3c909a54/0_244_7300_4383/master/7300.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=86797ba748651d2b01f7d1a203e885c3";
 
@@ -267,10 +268,55 @@ export default function ContactSection() {
               Send us a message
             </h3>
 
-            <form
-              style={{ display: "flex", flexDirection: "column", gap: 20 }}
-              onSubmit={(e) => e.preventDefault()}
-            >
+            {isSubmitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "60px 20px",
+                  textAlign: "center",
+                  gap: 16,
+                }}
+              >
+                <div
+                  style={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: "50%",
+                    background: "rgba(37, 211, 102, 0.1)",
+                    color: "#25D366",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: 8,
+                  }}
+                >
+                  <Send size={32} />
+                </div>
+                <h4
+                  style={{
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "1.25rem",
+                    fontWeight: 700,
+                    color: "#1d1d1f",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Thank you, Our team will reach you quickly
+                </h4>
+              </motion.div>
+            ) : (
+              <form
+                style={{ display: "flex", flexDirection: "column", gap: 20 }}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setIsSubmitted(true);
+                }}
+              >
               <div
                 style={{
                   display: "grid",
@@ -458,7 +504,8 @@ export default function ContactSection() {
                   WhatsApp
                 </a>
               </div>
-            </form>
+              </form>
+            )}
           </motion.div>
         </div>
 
