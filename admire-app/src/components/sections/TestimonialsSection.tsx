@@ -144,7 +144,7 @@ export default function TestimonialsSection() {
 
         {/* Carousel */}
         <div className="max-w-5xl mx-auto relative">
-          <div className="overflow-hidden" style={{ minHeight: 360 }}>
+          <div className="overflow-hidden" style={{ minHeight: 280 }}>
             <AnimatePresence custom={direction} mode="wait">
               <motion.div
                 key={current}
@@ -155,6 +155,7 @@ export default function TestimonialsSection() {
                 exit="exit"
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="card p-8 md:p-10 text-center relative"
+                style={{ padding: "5px" }}
               >
                 {/* Quote */}
                 <div
@@ -240,7 +241,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
+          <div className="flex items-center justify-center gap-4 mt-3">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}

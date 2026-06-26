@@ -6,7 +6,6 @@ import {
   Menu,
   X,
   ChevronRight,
-  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -102,19 +101,17 @@ export default function Navbar() {
           >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group pl-4 xl:pl-6">
-              <div
-                className="flex items-center justify-center rounded-xl"
+              <img
+                src="https://admireorg.in/wp-content/uploads/2023/04/cropped-cropped-IMG-20220321-WA0013.jpg"
+                alt="Admire Global Organisation Logo"
                 style={{
                   width: 42,
                   height: 42,
-                  background:
-                    "linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)",
+                  borderRadius: "50%",
+                  objectFit: "cover",
                   boxShadow: "var(--shadow-accent)",
-                  padding: 4,
                 }}
-              >
-                <Sparkles size={22} color="white" strokeWidth={2.5} />
-              </div>
+              />
               <div className="flex flex-col py-4">
                 <span
                   className="font-bold text-base lg:text-lg tracking-tight"

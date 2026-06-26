@@ -88,25 +88,27 @@ export default function GallerySection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-10"
+          className="flex flex-wrap items-center justify-center gap-4 mb-10"
         >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className="px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300"
+              className="px-7 py-3 text-sm font-semibold transition-all duration-300"
               style={{
                 fontFamily: "var(--font-heading)",
+                borderRadius: "20px",
+                margin: "10px",
+                padding: "5px",
                 background:
                   activeCategory === cat
                     ? "linear-gradient(135deg, var(--color-accent), var(--color-accent-dark))"
                     : "var(--color-card)",
                 color: activeCategory === cat ? "white" : "var(--color-text-light)",
-                border: `1px solid ${
-                  activeCategory === cat
-                    ? "var(--color-accent)"
-                    : "var(--color-border)"
-                }`,
+                border: `1px solid ${activeCategory === cat
+                  ? "var(--color-accent)"
+                  : "var(--color-border)"
+                  }`,
                 cursor: "pointer",
                 boxShadow: activeCategory === cat ? "var(--shadow-accent)" : "none",
               }}
@@ -130,9 +132,8 @@ export default function GallerySection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`rounded-2xl overflow-hidden cursor-pointer group relative ${
-                  item.aspect === "tall" ? "row-span-2" : ""
-                } ${item.aspect === "wide" ? "md:col-span-2" : ""}`}
+                className={`rounded-2xl overflow-hidden cursor-pointer group relative ${item.aspect === "tall" ? "row-span-2" : ""
+                  } ${item.aspect === "wide" ? "md:col-span-2" : ""}`}
                 style={{
                   minHeight: item.aspect === "tall" ? 360 : 180,
                   background: `linear-gradient(135deg, ${item.color}20, ${item.color}40)`,

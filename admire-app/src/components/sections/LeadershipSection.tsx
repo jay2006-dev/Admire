@@ -30,7 +30,8 @@ const leaders = [
     role: "Country Head",
     bio: "Visionary leader with extensive experience building high-performing teams and driving business growth across India.",
     initials: "TF",
-    blobs: ["#a78bfa", "#f9a8d4", "#93c5fd"],   // violet · pink · sky
+    image: "https://admireorg.in/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-29-at-17.06.31-1.jpeg",
+    blobs: ["#a78bfa", "#f9a8d4", "#93c5fd"],
     linkedin: "#",
     website: "#",
     email: "tony@admire.in",
@@ -42,7 +43,8 @@ const leaders = [
     role: "Country Head",
     bio: "Strategic thinker specializing in market expansion and organizational development with a passion for mentoring.",
     initials: "KT",
-    blobs: ["#c4b5fd", "#fde68a", "#f9a8d4"],   // violet · amber · pink
+    image: "https://admireorg.in/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-29-at-17.06.31.jpeg",
+    blobs: ["#c4b5fd", "#fde68a", "#f9a8d4"],
     linkedin: "#",
     website: "#",
     email: "kishore@admire.in",
@@ -54,7 +56,8 @@ const leaders = [
     role: "Country Head",
     bio: "Dynamic leader focused on operational excellence and creating clear pathways for aspiring entrepreneurs.",
     initials: "GA",
-    blobs: ["#6ee7b7", "#93c5fd", "#fde68a"],   // emerald · sky · amber
+    image: "https://admireorg.in/wp-content/uploads/2023/06/4vb6litf.png",
+    blobs: ["#6ee7b7", "#93c5fd", "#fde68a"],
     linkedin: "#",
     website: "#",
     email: "gopi@admire.in",
@@ -66,7 +69,8 @@ const leaders = [
     role: "Organisation Head",
     bio: "Founding leader driving Admire's vision of developing entrepreneurs and transforming careers across the nation.",
     initials: "MP",
-    blobs: ["#fca5a5", "#fde68a", "#c4b5fd"],   // rose · amber · violet
+    image: "https://admireorg.in/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-29-at-17.14.14.jpeg",
+    blobs: ["#fca5a5", "#fde68a", "#c4b5fd"],
     linkedin: "#",
     website: "#",
     email: "pavan@admire.in",
@@ -76,100 +80,52 @@ const leaders = [
 ];
 
 /* ─────────────────────────────────────────────────────────
-   BLOB AVATAR  (inline SVG mesh — same language as CTA box)
+   LEADER PHOTO AVATAR
 ───────────────────────────────────────────────────────── */
-function BlobAvatar({
-  blobs,
-  initials,
+function LeaderAvatar({
+  image,
+  name,
   hovered,
 }: {
-  blobs: string[];
-  initials: string;
+  image: string;
+  name: string;
   hovered: boolean;
 }) {
-  // Prefix ensures IDs are unique even if component renders more than once
-  const id = `leader-${initials}`;
   return (
     <div
       style={{
         position: "relative",
         width: "100%",
-        height: 200,
+        height: 220,
         overflow: "hidden",
         borderRadius: "20px 20px 0 0",
         flexShrink: 0,
       }}
     >
-      {/* Blob mesh background */}
-      <svg
-        aria-hidden={true}
-        xmlns="http://www.w3.org/2000/svg"
+      <img
+        src={image}
+        alt={name}
         style={{
-          position: "absolute",
-          inset: 0,
           width: "100%",
           height: "100%",
+          objectFit: "cover",
+          objectPosition: "top center",
           transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)",
-          transform: hovered ? "scale(1.08)" : "scale(1)",
+          transform: hovered ? "scale(1.06)" : "scale(1)",
         }}
-        viewBox="0 0 100 100"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <defs>
-          <filter id={`av-blur-${id}`} x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="14" />
-          </filter>
-        </defs>
-        <rect width="100" height="100" fill={blobs[0]} opacity="0.35" />
-        <g filter={`url(#av-blur-${id})`}>
-          <circle cx="20" cy="25" r="48" fill={blobs[0]} opacity="0.9" />
-          <circle cx="80" cy="20" r="40" fill={blobs[1]} opacity="0.85" />
-          <circle cx="55" cy="80" r="45" fill={blobs[2]} opacity="0.8" />
-          <circle cx="10" cy="80" r="36" fill={blobs[1]} opacity="0.6" />
-          <circle cx="90" cy="75" r="38" fill={blobs[0]} opacity="0.65" />
-        </g>
-      </svg>
-
-      {/* Frosted initials circle */}
+      />
+      {/* Bottom gradient overlay for text readability */}
       <div
         style={{
           position: "absolute",
-          inset: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 60,
+          background: "linear-gradient(to top, rgba(0,0,0,0.15), transparent)",
+          pointerEvents: "none",
         }}
-      >
-        <div
-          style={{
-            width: 78,
-            height: 78,
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.52)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            border: "1.5px solid rgba(255,255,255,0.8)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1)",
-            transform: hovered ? "scale(1.12)" : "scale(1)",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontSize: "1.65rem",
-              fontWeight: 800,
-              color: "#1d1d1f",
-              letterSpacing: "-0.03em",
-            }}
-          >
-            {initials}
-          </span>
-        </div>
-      </div>
+      />
     </div>
   );
 }
@@ -217,8 +173,8 @@ function LeaderCard({
           height: "100%",
         }}
       >
-        {/* Blob avatar zone */}
-        <BlobAvatar blobs={leader.blobs} initials={leader.initials} hovered={hovered} />
+        {/* Photo avatar zone */}
+        <LeaderAvatar image={leader.image} name={leader.name} hovered={hovered} />
 
         {/* Text body */}
         <div
